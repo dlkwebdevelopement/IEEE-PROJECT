@@ -1,0 +1,260 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #10233f;
+  background-color: #ffffff;
+}
+
+/* =========================================================================
+   GLOBAL RESET: Remove underline from all links across all pages
+   ========================================================================= */
+a,
+a *,
+a:hover,
+a:hover *,
+a:focus,
+a:focus *,
+a:active,
+a:visited,
+Link,
+.underline,
+.hover\:underline:hover {
+  text-decoration: none !important;
+  text-decoration-line: none !important;
+}
+
+/* =========================================================================
+   BOOTSTRAP OVERRIDE: Ensure rounded border-radius works on buttons
+   ========================================================================= */
+button.rounded-full,
+.rounded-full,
+[class*="rounded-full"] {
+  border-radius: 9999px !important;
+}
+
+button.rounded-3xl,
+.rounded-3xl {
+  border-radius: 1.5rem !important;
+}
+
+button.rounded-2xl,
+.rounded-2xl {
+  border-radius: 1rem !important;
+}
+
+button.rounded-xl,
+.rounded-xl {
+  border-radius: 0.75rem !important;
+}
+
+button.rounded-lg,
+.rounded-lg {
+  border-radius: 0.5rem !important;
+}
+
+.hero {
+  background: linear-gradient(135deg, #071d49, #1558c9 58%, #08a6a6);
+}
+
+.section {
+  padding: 76px 0;
+}
+
+.lift {
+  transition: 0.25s;
+}
+
+.lift:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 18px 40px #102b5018;
+}
+
+/* 3D Floating Animations for Holographic Badges */
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(2deg);
+  }
+}
+
+@keyframes float-medium {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-9px) rotate(-2deg);
+  }
+}
+
+@keyframes float-reverse {
+  0%, 100% {
+    transform: translateY(-8px) rotate(1deg);
+  }
+  50% {
+    transform: translateY(4px) rotate(-1.5deg);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 25px rgba(0, 229, 255, 0.4), inset 0 0 15px rgba(0, 229, 255, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 45px rgba(0, 229, 255, 0.7), inset 0 0 25px rgba(0, 229, 255, 0.3);
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.35);
+    opacity: 0.25;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 4.5s ease-in-out infinite;
+}
+
+.animate-float-medium {
+  animation: float-medium 3.8s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: float-reverse 4.2s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.animate-ripple {
+  animation: ripple 2.2s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+/* =========================================================================
+   NAVBAR NESTED FLYOUT DROPDOWNS (SIDE SUBMENUS)
+   Ensures side flyouts are never clipped and reliably show on hover/focus
+   ========================================================================= */
+.nav-subgroup {
+  position: relative !important;
+}
+
+.nav-subflyout {
+  display: none !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 100% !important;
+  margin-left: 2px !important;
+  z-index: 9999 !important;
+  box-shadow: 0 20px 35px -5px rgba(0, 0, 0, 0.18), 0 10px 15px -5px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Invisible bridge so gliding the mouse cursor across the gap never closes the menu */
+.nav-subflyout::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  bottom: -10px;
+  left: -15px;
+  width: 20px;
+  background: transparent;
+  pointer-events: auto;
+}
+
+.nav-subgroup:hover > .nav-subflyout,
+.nav-subgroup:focus-within > .nav-subflyout,
+.nav-subgroup.is-open > .nav-subflyout {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+.nav-subgroup:hover > .nav-sub-item,
+.nav-subgroup.is-open > .nav-sub-item {
+  background-color: #ff8200 !important;
+  color: #ffffff !important;
+}
+
+.nav-subgroup:hover .nav-sub-arrow,
+.nav-subgroup.is-open .nav-sub-arrow {
+  color: #ffffff !important;
+  transform: translateX(3px);
+}
+
+/* =========================================================================
+   FLOATING ACTION BUTTONS (FAB) 3-RING ONLY RADAR RIPPLE & WIGGLE
+   ========================================================================= */
+@keyframes fab-3ring-ripple {
+  0% {
+    transform: scale(0.98);
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 0.25;
+  }
+  100% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+}
+
+@keyframes phone-ring-wobble {
+  0%, 100% {
+    transform: rotate(0deg) scale(1);
+  }
+  8%, 24% {
+    transform: rotate(-10deg) scale(1.05);
+  }
+  16%, 32% {
+    transform: rotate(10deg) scale(1.05);
+  }
+  40% {
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+@keyframes badge-float {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(2px, -3px);
+  }
+}
+
+.animate-fab-3ring-1 {
+  animation: fab-3ring-ripple 2.4s cubic-bezier(0.15, 0.45, 0.35, 1) infinite;
+}
+
+.animate-fab-3ring-2 {
+  animation: fab-3ring-ripple 2.4s cubic-bezier(0.15, 0.45, 0.35, 1) infinite 0.8s;
+}
+
+.animate-fab-3ring-3 {
+  animation: fab-3ring-ripple 2.4s cubic-bezier(0.15, 0.45, 0.35, 1) infinite 1.6s;
+}
+
+.animate-wiggle-ring {
+  animation: phone-ring-wobble 3.5s ease-in-out infinite;
+}
+
+.animate-badge-float {
+  animation: badge-float 3s ease-in-out infinite;
+}
+
+
+

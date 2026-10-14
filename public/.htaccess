@@ -1,0 +1,30 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # Disable directory browsing
+    Options -Indexes
+
+    # Security: Block sensitive file access
+    <FilesMatch "\.(env|json|config|md|lock)$">
+        Order allow,deny
+        Deny from all
+    </FilesMatch>
+
+    # Handle Authorization Header
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # If the requested file or directory exists, serve it directly
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # Otherwise rewrite all requests to index.html for React SPA Routing (e.g. /admin, /blogs, 404 handler)
+    RewriteRule ^ index.html [L]
+</IfModule>
+
+# Enable GZIP / Deflate Compression for Speed
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json application/xml image/svg+xml
+</IfModule>

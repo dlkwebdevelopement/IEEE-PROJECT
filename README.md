@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # IEEE Project Centre
 
 React + Vite + Tailwind CSS 4 + Bootstrap + Material UI starter.
@@ -11,4 +12,6 @@ Build:
 ```bash
 npm run build
 ```
+=======
+>>>>>>> 55aa175dea0fd9d5a6b8fe2ca149cdf80e69c6cd
 "# IEEE-PROJECT" 
